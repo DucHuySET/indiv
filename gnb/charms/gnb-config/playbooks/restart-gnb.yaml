@@ -1,0 +1,7 @@
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: Restart gNB
+      shell: echo {{ ssh_password }} | sudo -S pkill -f "./gnb"; sleep 1; echo {{ ssh_password }} | sudo -S ./gnb -c gnb.yaml &
+      args:
+        chdir: /home/{{ ssh_username }}

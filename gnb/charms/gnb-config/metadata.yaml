@@ -1,0 +1,10 @@
+name: gnb-config
+summary: Charm to configure gNB via SSH
+maintainer: you@example.com
+description: |
+  This charm allows configuration of a physical gNB using SSH and Ansible.
+tags:
+  - pnf
+series:
+  - focal
+subordinate: false

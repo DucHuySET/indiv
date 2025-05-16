@@ -1,0 +1,66 @@
+vnfd:
+  description: PNF gNB for RAN slicing controlled via SSH Charm
+  df:
+  - id: default
+    instantiation-level:
+    - id: default-instantiation-level
+      vdu-level:
+      - number-of-instances: 1
+        vdu-id: gnb_pnf
+    vdu-profile:
+    - id: gnb_pnf
+      min-number-of-instances: 1
+    # lcm-operations-configuration:
+    #   operate-vnf-op-config:
+    #     day1-2:
+    #       # - id: gnb-slice-config
+    #     - config-access:
+    #         ssh-access:
+    #           required: true
+    #           default-user: adam
+    #       id: gnb_pnf_vnfd_2
+    #       execution-environment-list:
+    #         - id: default-ee
+    #           juju:
+    #             charm: gnb-config
+    #       initial-config-primitive:
+    #       - name: config-slice
+    #         parameter:
+    #         - name: sst
+    #           value: "1"
+    #         - name: sd
+    #           value: "0"
+    #         - name: min_prb
+    #           value: "0"
+    #         - name: max_prb
+    #           value: "100"
+    #         seq: 1
+    #       config-primitive:
+    #       - name: config-slice
+    #         parameter:
+    #         - name: sst
+    #           data-type: STRING
+    #         - name: sd
+    #           data-type: STRING
+    #         - name: min_prb
+    #           data-type: STRING
+    #         - name: max_prb
+    #           data-type: STRING
+  ext-cpd:
+  - id: mgmt
+    int-cpd:
+      cpd: gNB_interface
+      vdu-id: gnb_pnf
+  id: gnb_pnf_vnfd_2
+  mgmt-cp: mgmt
+  product-name: gnb_pnf_vnfd_2
+  vdu:
+  - id: gnb_pnf
+    pdu-type: ran 
+    int-cpd:
+    - id: gNB_interface
+      virtual-network-interface-requirement:
+      - name: gNB_interface
+    name: gnb_pnf
+  version: 1.0
+

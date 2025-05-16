@@ -1,0 +1,14 @@
+config-slice:
+  description: "Configure slicing on gNB"
+  params:
+    sst:
+      type: string
+    sd:
+      type: string
+    min_prb:
+      type: string
+    max_prb:
+      type: string
+
+restart-gnb:
+  description: "Restart the gNB process"

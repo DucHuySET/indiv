@@ -1,0 +1,143 @@
+# Copyright [2018] [Felipe Vicens, Pol Alemany, Ricard Vilalta]
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+#NST to test VLD connection between Network Services within the same VIM
+nst:
+    - id: slice_embb_nst
+      name: slice_embb_nst
+      SNSSAI-identifier:
+          slice-service-type: eMBB
+      quality-of-service:
+          id: 1
+
+      netslice-subnet:
+          - id: amf_nsd
+            is-shared-nss: false
+            description: AMF NetSlice Subnet (service) composed by 1 vnf with 2 cp
+            nsd-ref: amf_ns
+          - id: ausf_nsd
+            is-shared-nss: false
+            description: AUSF NetSlice Subnet (service) composed by 1 vnf with 3 cp
+            nsd-ref: ausf_ns
+          - id: nrf_nsd
+            is-shared-nss: false
+            description: NRF NetSlice Subnet (service) composed by 1 vnf with 2 cp
+            nsd-ref: nrf_ns
+          - id: pcf_nsd
+            is-shared-nss: false
+            description: PCF NetSlice Subnet (service) composed by 1 vnf with 2 cp
+            nsd-ref: pcf_ns
+          - id: smf_nsd
+            is-shared-nss: false
+            description: SMF NetSlice Subnet (service) composed by 1 vnf with 3 cp
+            nsd-ref: smf_ns
+          - id: udm_nsd
+            is-shared-nss: false
+            description: UDM NetSlice Subnet (service) composed by 1 vnf with 2 cp
+            nsd-ref: udm_ns
+          - id: udr_nsd
+            is-shared-nss: false
+            description: UDR NetSlice Subnet (service) composed by 1 vnf with 3 cp
+            nsd-ref: udr_ns
+          - id: upf_nsd
+            is-shared-nss: false
+            description: UPF NetSlice Subnet (service) composed by 1 vnf with 2 cp
+            nsd-ref: upf_ns
+
+      netslice-vld:
+          - id: slice_vld_mgmt
+            name: slice_vld_mgmt
+            type: ELAN
+            mgmt-network: true
+            nss-connection-point-ref:
+                - nss-ref: amf_nsd
+                  nsd-connection-point-ref: nsd_cp_mgmt
+                - nss-ref: ausf_nsd
+                  nsd-connection-point-ref: nsd_cp_mgmt
+                - nss-ref: nrf_nsd
+                  nsd-connection-point-ref: nsd_cp_mgmt
+                - nss-ref: pcf_nsd
+                  nsd-connection-point-ref: nsd_cp_mgmt
+                - nss-ref: smf_nsd
+                  nsd-connection-point-ref: nsd_cp_mgmt
+                - nss-ref: udm_nsd
+                  nsd-connection-point-ref: nsd_cp_mgmt
+                - nss-ref: udr_nsd
+                  nsd-connection-point-ref: nsd_cp_mgmt
+                - nss-ref: upf_nsd
+                  nsd-connection-point-ref: nsd_cp_mgmt
+          - id: amf_scp_vld
+            name: amf_scp_vld
+            type: ELAN
+            nss-connection-point-ref:
+                - nss-ref: amf_nsd
+                  nsd-connection-point-ref: nsd_cp_data
+                - nss-ref: scp_nsd
+                  nsd-connection-point-ref: nsd_cp_data
+          - id: ausf_scp_vld
+            name: ausf_scp_vld
+            type: ELAN
+            nss-connection-point-ref:
+                - nss-ref: ausf_nsd
+                  nsd-connection-point-ref: nsd_cp_data
+                - nss-ref: scp_nsd
+                  nsd-connection-point-ref: nsd_cp_data
+          - id: nrf_scp_vld
+            name: nrf_scp_vld
+            type: ELAN
+            nss-connection-point-ref:
+                - nss-ref: nrf_nsd
+                  nsd-connection-point-ref: nsd_cp_data
+                - nss-ref: scp_nsd
+                  nsd-connection-point-ref: nsd_cp_data
+          - id: pcf_scp_vld
+            name: pcf_scp_vld
+            type: ELAN
+            nss-connection-point-ref:
+                - nss-ref: pcf_nsd
+                  nsd-connection-point-ref: nsd_cp_data
+                - nss-ref: scp_nsd
+                  nsd-connection-point-ref: nsd_cp_data
+          - id: smf_scp_vld
+            name: smf_scp_vld
+            type: ELAN
+            nss-connection-point-ref:
+                - nss-ref: smf_nsd
+                  nsd-connection-point-ref: nsd_cp_data
+                - nss-ref: scp_nsd
+                  nsd-connection-point-ref: nsd_cp_data
+          - id: udm_scp_vld
+            name: udm_scp_vld
+            type: ELAN
+            nss-connection-point-ref:
+                - nss-ref: udm_nsd
+                  nsd-connection-point-ref: nsd_cp_data
+                - nss-ref: scp_nsd
+                  nsd-connection-point-ref: nsd_cp_data
+          - id: udr_scp_vld
+            name: udr_scp_vld
+            type: ELAN
+            nss-connection-point-ref:
+                - nss-ref: udr_nsd
+                  nsd-connection-point-ref: nsd_cp_data
+                - nss-ref: scp_nsd
+                  nsd-connection-point-ref: nsd_cp_data
+          - id: upf_scp_vld
+            name: upf_scp_vld
+            type: ELAN
+            nss-connection-point-ref:
+                - nss-ref: upf_nsd
+                  nsd-connection-point-ref: nsd_cp_data
+                - nss-ref: scp_nsd
+                  nsd-connection-point-ref: nsd_cp_data

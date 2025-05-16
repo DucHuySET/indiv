@@ -1,0 +1,28 @@
+nsd:
+  nsd:
+  - description: GNB PNF
+    designer: ANSA LAB
+    df:
+    - id: default-df
+      vnf-profile:
+      - id: gnb_pnf_2
+        virtual-link-connectivity:
+        - constituent-cpd-id:
+          - constituent-base-element-id: gnb_pnf_2
+            constituent-cpd-id: gNB_interface
+          virtual-link-profile-id: mgmt
+        # - constituent-cpd-id:
+        #   - constituent-base-element-id: VYOS-PNF
+        #     constituent-cpd-id: vnf_internal
+        #   virtual-link-profile-id: private
+        vnfd-id: gnb_pnf_2_vnfd_2
+    id: gnb_pnf_2_ns
+    name: gnb_pnf_2_ns
+    version: 1.0
+    virtual-link-desc:
+    - id: mgmt
+      mgmt-network: true
+    # - id: private
+    #   vim-network-name: private
+    vnfd-id:
+    - gnb_pnf_2_vnfd_2

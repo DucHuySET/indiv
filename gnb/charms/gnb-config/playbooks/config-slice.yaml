@@ -1,0 +1,23 @@
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: Generate slicing config
+      copy:
+        dest: /home/{{ ssh_username }}/slicing.yaml
+        content: |
+          slicing:
+            - sst: "{{ sst }}"
+              sd: "{{ sd }}"
+              sched_cfg:
+                min_prb_policy_ratio: {{ min_prb }}
+                max_prb_policy_ratio: {{ max_prb }}
+
+    - name: Update gnb.yaml
+      shell: cat slicing.yaml >> gnb.yaml
+      args:
+        chdir: /home/{{ ssh_username }}
+
+    - name: Restart gNB
+      shell: echo {{ ssh_password }} | sudo -S pkill -f "./gnb"; sleep 1; echo {{ ssh_password }} | sudo -S ./gnb -c gnb.yaml &
+      args:
+        chdir: /home/{{ ssh_username }}
